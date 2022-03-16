@@ -63,6 +63,60 @@ func (l *LinkedList) addNode(value int) {
 	}
 }
 
+func (l *LinkedList) add(value int) {
+	// create a new node
+	var newNode = &Node{data: value}
+
+	// make current head the next
+	newNode.next = l.head
+
+	//then put new node at the beginning(head)
+	l.head = newNode
+}
+
+func (l *LinkedList) deleteNode(value int) {
+
+	// check emptyness first
+	// case empty: [ null ]
+	if l.head == nil {
+		fmt.Println("nothing to delete")
+		return
+	}
+
+	// these are to keep track of position for deletion
+	var (
+		currentNode *Node
+		prevNode    *Node
+	)
+
+	currentNode = l.head
+
+	if currentNode.data == value {
+		l.head = currentNode.next
+	}
+
+	for {
+		// keep track of this so i can unlink it from current node easily
+		// ofcourse prevNode will start from head here
+		prevNode = currentNode
+
+		// check if this node has the value to easily unlink from it
+		currentNode = prevNode.next
+
+		// if it doesn't have the value just move down the linkedlist
+		if currentNode.data != value {
+
+			prevNode = currentNode
+			currentNode = currentNode.next
+
+			// let unlink from currentNode to one after it
+		} else {
+			prevNode.next = currentNode.next
+			break
+		}
+	}
+}
+
 func printLinkedList(l *LinkedList) {
 	if l.head == nil {
 		fmt.Println("nothing to print")
@@ -88,12 +142,17 @@ func printLinkedList(l *LinkedList) {
 }
 
 func main() {
-	var ll1 = LinkedList{}
+	// var ll1 = LinkedList{}
 	var ll2 = LinkedList{head: &Node{data: 99}}
 
 	// ll1.addNode(1)
-	ll2.addNode(2)
-	printLinkedList(&ll1)
+	ll2.add(2)
+	ll2.add(16)
+	fmt.Println("here is the updated linkedList")
+	printLinkedList(&ll2)
+
+	ll2.deleteNode(2)
+	fmt.Println("here is the updated linkedList")
 	printLinkedList(&ll2)
 
 }
