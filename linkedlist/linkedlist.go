@@ -55,6 +55,8 @@ func (l *LinkedList) addNode(value int) {
 				// we add the current node to the last node
 				// and ofcourse, the lastest node will now point to null
 				currentNode.next = newNode
+
+				// we stop iterating
 				break
 			}
 		}
@@ -69,24 +71,29 @@ func printLinkedList(l *LinkedList) {
 
 	var currentNode *Node
 
+	// we start from the head as usual
 	currentNode = l.head
 
 	for {
+
+		// we continue to print through as long as we haven't reached the end(which points to null)
 		fmt.Println(currentNode.data)
 		if currentNode.next != nil {
 			currentNode = currentNode.next
 		} else {
+			// we've reached the end so we break
 			break
 		}
 	}
 }
 
 func main() {
-	// var ll1 = LinkedList{}
+	var ll1 = LinkedList{}
 	var ll2 = LinkedList{head: &Node{data: 99}}
 
 	// ll1.addNode(1)
 	ll2.addNode(2)
+	printLinkedList(&ll1)
 	printLinkedList(&ll2)
 
 }
