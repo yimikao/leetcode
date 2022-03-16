@@ -35,7 +35,7 @@ func NewNode(d int) *Node {
 	return &Node{data: d, next: nil}
 }
 
-func (l *LinkedList) addNode(d int) {
+func (l *LinkedList) addStart(d int) {
 	// create a new node
 	var newNode = NewNode(d)
 
@@ -46,7 +46,7 @@ func (l *LinkedList) addNode(d int) {
 	l.head = newNode
 }
 
-func (l *LinkedList) deleteNode(d int) {
+func (l *LinkedList) deleteAt(d int) {
 
 	// these are to keep track of position for deletion
 	var (
@@ -118,13 +118,13 @@ func main() {
 
 	var ll2 = NewLinkedList()
 
-	ll2.addNode(2)
-	ll2.addNode(18)
-	ll2.addNode(15)
+	ll2.addStart(2)
+	ll2.addStart(18)
+	ll2.addStart(15)
 	fmt.Println("here is the add updated linkedList")
 	printLinkedList(ll2)
 
-	ll2.deleteNode(18)
+	ll2.deleteAt(18)
 	fmt.Println("here is the delete updated linkedList")
 	printLinkedList(ll2)
 
