@@ -19,53 +19,25 @@ Operations that can be performed on singly linked lists include insertion, delet
 // The following code demonstrates how to add a new node with data "value" to the end of a singly linked list:
 
 type Node struct {
-	data int   // assume we're storing integers
-	next *Node // we point to the next node's address
+	data int   // data to be stored
+	next *Node // point to the next node's address
 }
 
 type LinkedList struct {
 	head *Node // we only need to know the head node
 }
 
-func (l *LinkedList) addNode(value int) {
-
-	var newNode = &Node{data: value} // new node to be added
-
-	// why didn't this work tho
-	// var newNode *Node
-	// newNode.data = value
-
-	var currentNode *Node // we use this to keep track of node we have/curentky on when interating
-
-	// when linked-list is empty just add head node
-	if l.head == nil {
-		l.head = newNode
-	} else {
-		// if not empty, check where next is null(i.e end) so we add there
-		// we have to start from the head
-		currentNode = l.head
-
-		// we begin iterating through the linkedlist
-		for {
-			// that is we aren't at the end yet
-			if currentNode.next != nil {
-				// we move to the next node
-				currentNode = currentNode.next
-			} else {
-				// we add the current node to the last node
-				// and ofcourse, the lastest node will now point to null
-				currentNode.next = newNode
-
-				// we stop iterating
-				break
-			}
-		}
-	}
+func NewLinkedList() *LinkedList {
+	return &LinkedList{head: nil}
 }
 
-func (l *LinkedList) add(value int) {
+func NewNode(d int) *Node {
+	return &Node{data: d, next: nil}
+}
+
+func (l *LinkedList) addNode(d int) {
 	// create a new node
-	var newNode = &Node{data: value}
+	var newNode = NewNode(d)
 
 	// make current head the next
 	newNode.next = l.head
@@ -74,14 +46,7 @@ func (l *LinkedList) add(value int) {
 	l.head = newNode
 }
 
-func (l *LinkedList) deleteNode(value int) {
-
-	// check emptyness first
-	// case empty: [ null ]
-	if l.head == nil {
-		fmt.Println("nothing to delete")
-		return
-	}
+func (l *LinkedList) deleteNode(d int) {
 
 	// these are to keep track of position for deletion
 	var (
@@ -91,68 +56,76 @@ func (l *LinkedList) deleteNode(value int) {
 
 	currentNode = l.head
 
-	if currentNode.data == value {
-		l.head = currentNode.next
-	}
+	// empty
+	if currentNode == nil {
 
-	for {
-		// keep track of this so i can unlink it from current node easily
-		// ofcourse prevNode will start from head here
-		prevNode = currentNode
-
-		// check if this node has the value to easily unlink from it
-		currentNode = prevNode.next
-
-		// if it doesn't have the value just move down the linkedlist
-		if currentNode.data != value {
-
-			prevNode = currentNode
-			currentNode = currentNode.next
-
-			// let unlink from currentNode to one after it
-		} else {
-			prevNode.next = currentNode.next
-			break
-		}
-	}
-}
-
-func printLinkedList(l *LinkedList) {
-	if l.head == nil {
-		fmt.Println("nothing to print")
 		return
 	}
 
-	var currentNode *Node
+	// if head node holds the data to be deleted
+	if currentNode != nil {
 
-	// we start from the head as usual
-	currentNode = l.head
+		if currentNode.data == d {
+			l.head = currentNode.next
+			return
+		}
 
-	for {
+	}
 
-		// we continue to print through as long as we haven't reached the end(which points to null)
-		fmt.Println(currentNode.data)
-		if currentNode.next != nil {
-			currentNode = currentNode.next
-		} else {
-			// we've reached the end so we break
+	for currentNode != nil {
+		// begin to iterate through none nil values i.e while not reached the end
+		// and try return early
+
+		// no need to iterate further
+		if currentNode.data == d {
+
 			break
 		}
+
+		// continue to move down the list
+		// keep track of this so i can unlink it from current node easily
+		// this node has been confirmed to not hold the value
+		prevNode = currentNode
+
+		// check if this node has the value to easily unlink from it
+		currentNode = currentNode.next
+
+	}
+
+	// continue from early break
+	// unlink prevNode unto currentNode's next
+	prevNode.next = currentNode.next
+	// erase current node
+	currentNode = nil
+
+}
+
+func printLinkedList(l *LinkedList) {
+
+	var currentNode *Node
+
+	// start from the head as usual
+	currentNode = l.head
+
+	for currentNode != nil {
+		// we continue to print through as long as we haven't reached the end(which points to null)
+		fmt.Println(currentNode.data)
+		currentNode = currentNode.next
 	}
 }
 
 func main() {
-	// var ll1 = LinkedList{}
-	var ll2 = LinkedList{head: &Node{data: 99}}
 
-	// ll1.addNode(1)
-	ll2.add(2)
-	ll2.add(16)
-	fmt.Println("here is the updated linkedList")
-	printLinkedList(&ll2)
+	var ll2 = NewLinkedList()
 
-	ll2.deleteNode(2)
-	fmt.Println("here is the updated linkedList")
-	printLinkedList(&ll2)
+	ll2.addNode(2)
+	ll2.addNode(18)
+	ll2.addNode(15)
+	fmt.Println("here is the add updated linkedList")
+	printLinkedList(ll2)
+
+	ll2.deleteNode(18)
+	fmt.Println("here is the delete updated linkedList")
+	printLinkedList(ll2)
 
 }
