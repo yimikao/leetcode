@@ -43,7 +43,6 @@ func (l *LinkedList) InsertLast(d int) {
 	}
 
 	current := l.head
-
 	for current.next != nil {
 		current = current.next
 	}
@@ -59,7 +58,7 @@ func (l *LinkedList) RemoveFirst() {
 	l.head = l.head.next
 }
 
-func (l *LinkedList) RemoveByValue(d int) {
+func (l *LinkedList) RemoveByValue(v int) {
 
 	var (
 		currentNode *Node
@@ -75,7 +74,7 @@ func (l *LinkedList) RemoveByValue(d int) {
 
 	if currentNode != nil {
 
-		if currentNode.data == d {
+		if currentNode.data == v {
 			l.head = currentNode.next
 			return
 		}
@@ -83,7 +82,7 @@ func (l *LinkedList) RemoveByValue(d int) {
 	}
 
 	for currentNode != nil {
-		if currentNode.data == d {
+		if currentNode.data == v {
 
 			break
 		}
@@ -97,6 +96,21 @@ func (l *LinkedList) RemoveByValue(d int) {
 	prevNode.next = currentNode.next
 	currentNode = nil
 
+}
+
+func (l *LinkedList) SearchByValue(v int) bool {
+	if l.head == nil {
+		return false
+	}
+
+	current := l.head
+
+	for current != nil {
+		if current.data == v {
+			return true
+		}
+	}
+	return false
 }
 
 func printLinkedList(l *LinkedList) {
