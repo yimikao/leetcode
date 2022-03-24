@@ -109,6 +109,7 @@ func (l *LinkedList) SearchByValue(v int) bool {
 		if current.data == v {
 			return true
 		}
+		current = current.next
 	}
 	return false
 }
