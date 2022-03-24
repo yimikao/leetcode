@@ -34,6 +34,23 @@ func (l *LinkedList) InsertFirst(d int) {
 	l.head = newNode
 }
 
+func (l *LinkedList) InsertLast(d int) {
+	n := NewNode(d)
+
+	if l.head == nil {
+		l.head = n
+		return
+	}
+
+	current := l.head
+
+	for current.next != nil {
+		current = current.next
+	}
+
+	current.next = n
+}
+
 func (l *LinkedList) RemoveFirst() {
 	if l.head == nil {
 		return
