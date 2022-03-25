@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /**
  * Created by damilolaolayinka on 16/3/22.
@@ -131,10 +133,21 @@ func (l *LinkedList) GetFirst() *Node {
 	return l.head
 }
 
-func (l *LinkedList) GetByValue(v int) *Node {
+func (l *LinkedList) GetLast() *Node {
 	if l.head == nil {
 		return l.head
 	}
+
+	current := l.head
+	for {
+		if current.next == nil {
+			break
+		}
+	}
+	return current
+}
+
+func (l *LinkedList) GetByValue(v int) *Node {
 
 	current := l.head
 
