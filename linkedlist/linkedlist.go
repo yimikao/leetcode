@@ -126,6 +126,28 @@ func printLinkedList(l *LinkedList) {
 	}
 }
 
+//
+func (l *LinkedList) GetFirst() *Node {
+	return l.head
+}
+
+func (l *LinkedList) GetByValue(v int) *Node {
+	if l.head == nil {
+		return l.head
+	}
+
+	current := l.head
+
+	for current != nil {
+		if current.data == v {
+			return current
+		}
+		current = current.next
+	}
+	return nil
+
+}
+
 func main() {
 
 	var ll2 = NewLinkedList()
