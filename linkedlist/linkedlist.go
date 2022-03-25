@@ -143,6 +143,7 @@ func (l *LinkedList) GetLast() *Node {
 		if current.next == nil {
 			break
 		}
+		current = current.next
 	}
 	return current
 }
