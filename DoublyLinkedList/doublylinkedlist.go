@@ -37,12 +37,10 @@ func (l *LinkedList) InsertLast(v int) {
 		return
 	}
 
-	if l.tail != nil {
-		l.tail.next = n
-		n.prev = l.tail
-	}
-
+	l.tail.next = n
+	n.prev = l.tail
 	l.tail = n
+
 }
 
 func (l *LinkedList) RemoveByValue(v int) bool {
@@ -100,13 +98,13 @@ func main() {
 
 	ll := LinkedList{}
 
-	ll.InsertFirst(4)
-	ll.InsertFirst(14)
-	ll.InsertFirst(77)
+	// ll.InsertFirst(4)
+	// ll.InsertFirst(14)
+	// ll.InsertFirst(77)
 	ll.InsertFirst(98)
 	ll.InsertLast(9)
 
 	printLinkedList(ll)
-	fmt.Println(ll.tail)
 	fmt.Println(ll.head)
+	fmt.Println(ll.tail)
 }
