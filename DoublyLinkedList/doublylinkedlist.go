@@ -156,6 +156,23 @@ func (l *LinkedList) GetItemsFromStart() ([]int, bool) {
 	return items, true
 }
 
+func (l *LinkedList) GetItemsFromEnd() ([]int, bool) {
+	items := []int{}
+
+	if l.head == nil {
+		return items, false
+	}
+
+	cur := l.tail
+
+	for cur != nil {
+		items = append(items, cur.data)
+		cur = cur.prev
+	}
+	return items, true
+
+}
+
 func printLinkedList(l LinkedList) {
 	items := []int{}
 
@@ -178,7 +195,7 @@ func main() {
 	ll := LinkedList{}
 
 	// ll.InsertFirst(4)
-	// ll.InsertFirst(14)
+	ll.InsertFirst(14)
 	ll.InsertFirst(77)
 	ll.InsertFirst(98)
 	// ll.InsertLast(9)
@@ -191,6 +208,8 @@ func main() {
 		fmt.Println(d)
 	}
 	fmt.Println(ll.GetSize())
+	fmt.Println(ll.GetItemsFromStart())
+	fmt.Println(ll.GetItemsFromEnd())
 	// fmt.Println(ll.head)
 	// fmt.Println(ll.tail)
 
