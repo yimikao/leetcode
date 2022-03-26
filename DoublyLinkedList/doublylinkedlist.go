@@ -25,6 +25,12 @@ func (l *LinkedList) InsertFirst(v int) {
 func (l *LinkedList) InsertLast(v int) {
 	n := &Node{data: v}
 
+	if l.head == nil {
+		l.head = n
+		l.tail = n
+		return
+	}
+
 	if l.tail != nil {
 		l.tail.next = n
 		n.prev = l.tail
