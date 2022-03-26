@@ -18,9 +18,19 @@ func (l *LinkedList) InsertFirst(v int) {
 	if l.head != nil {
 		n.next = l.head
 		l.head.prev = n
-		return
 	}
 	l.head = n
+}
+
+func (l *LinkedList) InsertLast(v int) {
+	n := &Node{data: v}
+
+	if l.tail != nil {
+		l.tail.next = n
+		n.prev = l.tail
+	}
+
+	l.tail = n
 }
 
 func main() {
