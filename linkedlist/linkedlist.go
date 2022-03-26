@@ -150,6 +150,22 @@ func (l *LinkedList) GetByValue(v int) *Node {
 
 }
 
+func (l *LinkedList) GetItems() []int {
+	items := []int{}
+
+	if l.head == nil {
+		return items
+	}
+
+	current := l.head
+	for current != nil {
+		items = append(items, current.data)
+		current = current.next
+	}
+	return items
+
+}
+
 func printLinkedList(l *LinkedList) {
 
 	var currentNode *Node
@@ -161,6 +177,7 @@ func printLinkedList(l *LinkedList) {
 		currentNode = currentNode.next
 	}
 }
+
 func main() {
 
 	var ll2 = NewLinkedList()
@@ -175,5 +192,7 @@ func main() {
 	ll2.RemoveByValue(18)
 	fmt.Println("here is the delete updated linkedList")
 	printLinkedList(ll2)
+
+	ll2.GetItems()
 
 }
