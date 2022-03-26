@@ -89,6 +89,26 @@ func (l *LinkedList) RemoveByValue(v int) bool {
 	return false
 }
 
+func (l *LinkedList) GetByValue(v int) bool {
+
+	if l.head == nil {
+		return false
+	}
+
+	if l.head.data == v || l.tail.data == v {
+		return true
+	}
+
+	current := l.head
+	for current != nil {
+		if current.data == v {
+			return true
+		}
+		current = current.next
+	}
+	return false
+}
+
 func printLinkedList(l LinkedList) {
 	items := []int{}
 
