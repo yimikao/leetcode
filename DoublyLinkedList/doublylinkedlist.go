@@ -123,6 +123,23 @@ func (l *LinkedList) GetLast() (int, bool) {
 	return l.tail.data, true
 }
 
+func (l *LinkedList) GetSize() int {
+	count := 0
+
+	if l.head == nil {
+		return count
+	}
+
+	cur := l.head
+
+	for cur != nil {
+		count++
+		cur = cur.next
+	}
+
+	return count
+}
+
 func printLinkedList(l LinkedList) {
 	items := []int{}
 
@@ -150,13 +167,14 @@ func main() {
 	ll.InsertFirst(98)
 	// ll.InsertLast(9)
 
-	ll.RemoveByValue(98)
-	ll.RemoveByValue(77)
+	// ll.RemoveByValue(98)
+	// ll.RemoveByValue(77)
 	printLinkedList(ll)
 	d, ok := ll.GetLast()
 	if ok {
 		fmt.Println(d)
 	}
+	fmt.Println(ll.GetSize())
 	// fmt.Println(ll.head)
 	// fmt.Println(ll.tail)
 
