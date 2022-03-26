@@ -109,6 +109,20 @@ func (l *LinkedList) GetByValue(v int) bool {
 	return false
 }
 
+func (l *LinkedList) GetFirst() (int, bool) {
+	if l.head == nil {
+		return 0, false
+	}
+	return l.head.data, true
+}
+
+func (l *LinkedList) GetLast() (int, bool) {
+	if l.head == nil {
+		return 0, false
+	}
+	return l.tail.data, true
+}
+
 func printLinkedList(l LinkedList) {
 	items := []int{}
 
@@ -136,15 +150,19 @@ func main() {
 	ll.InsertFirst(98)
 	// ll.InsertLast(9)
 
-	printLinkedList(ll)
-	fmt.Println(ll.head)
-	fmt.Println(ll.tail)
-
 	ll.RemoveByValue(98)
-	printLinkedList(ll)
-
-	fmt.Println(ll.head)
-	fmt.Println(ll.tail)
 	ll.RemoveByValue(77)
 	printLinkedList(ll)
+	d, ok := ll.GetLast()
+	if ok {
+		fmt.Println(d)
+	}
+	// fmt.Println(ll.head)
+	// fmt.Println(ll.tail)
+
+	// printLinkedList(ll)
+
+	// fmt.Println(ll.head)
+	// fmt.Println(ll.tail)
+	// printLinkedList(ll)
 }
