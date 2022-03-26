@@ -116,18 +116,6 @@ func (l *LinkedList) SearchByValue(v int) bool {
 	return false
 }
 
-func printLinkedList(l *LinkedList) {
-
-	var currentNode *Node
-
-	currentNode = l.head
-
-	for currentNode != nil {
-		fmt.Println(currentNode.data)
-		currentNode = currentNode.next
-	}
-}
-
 //
 func (l *LinkedList) GetFirst() *Node {
 	return l.head
@@ -162,6 +150,17 @@ func (l *LinkedList) GetByValue(v int) *Node {
 
 }
 
+func printLinkedList(l *LinkedList) {
+
+	var currentNode *Node
+
+	currentNode = l.head
+
+	for currentNode != nil {
+		fmt.Printf(" %d ", currentNode.data)
+		currentNode = currentNode.next
+	}
+}
 func main() {
 
 	var ll2 = NewLinkedList()
@@ -171,6 +170,7 @@ func main() {
 	ll2.InsertFirst(15)
 	fmt.Println("here is the add updated linkedList")
 	printLinkedList(ll2)
+	fmt.Println("")
 
 	ll2.RemoveByValue(18)
 	fmt.Println("here is the delete updated linkedList")
