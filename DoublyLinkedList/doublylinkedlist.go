@@ -17,6 +17,7 @@ func (l *LinkedList) InsertFirst(v int) {
 
 	n := &Node{data: v}
 
+	// in any case that head is nil, tail will also be nil..tail and head will be the same on insert
 	if l.head == nil {
 		l.head = n
 		l.tail = n
@@ -31,6 +32,7 @@ func (l *LinkedList) InsertFirst(v int) {
 func (l *LinkedList) InsertLast(v int) {
 	n := &Node{data: v}
 
+	// in any case that head is nil, tail will also be nil..tail and head will be the same on insert
 	if l.head == nil {
 		l.head = n
 		l.tail = n
