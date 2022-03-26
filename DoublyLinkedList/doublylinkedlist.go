@@ -24,8 +24,8 @@ func (l *LinkedList) InsertFirst(v int) {
 		return
 	}
 
-	n.next = l.head
 	l.head.prev = n
+	n.next = l.head
 	l.head = n
 }
 
@@ -53,24 +53,34 @@ func (l *LinkedList) RemoveByValue(v int) bool {
 
 	}
 
-	if l.head.data == v {
+	if l.head.data == v && l.tail.data == v {
 
 		l.head = l.head.next
+		l.tail = l.tail.next
+		return true
+
+	}
+
+	if l.head.data == v {
+		l.head = l.head.next
+		l.head.prev = nil
 		return true
 
 	}
 
 	if l.tail.data == v {
 		l.tail = l.tail.prev
+		l.tail.next = nil
 		return true
 	}
 
 	current := l.head
-	for current.next != nil {
+	for current != nil {
 
 		if current.data == v {
 			current.prev.next = current.next
-			current = nil
+			current.next.prev = current.prev
+			// current = nil
 			return true
 		}
 		current = current.next
@@ -102,11 +112,19 @@ func main() {
 
 	// ll.InsertFirst(4)
 	// ll.InsertFirst(14)
-	// ll.InsertFirst(77)
+	ll.InsertFirst(77)
 	ll.InsertFirst(98)
-	ll.InsertLast(9)
+	// ll.InsertLast(9)
 
 	printLinkedList(ll)
 	fmt.Println(ll.head)
 	fmt.Println(ll.tail)
+
+	ll.RemoveByValue(98)
+	printLinkedList(ll)
+
+	fmt.Println(ll.head)
+	fmt.Println(ll.tail)
+	ll.RemoveByValue(77)
+	printLinkedList(ll)
 }
