@@ -140,6 +140,22 @@ func (l *LinkedList) GetSize() int {
 	return count
 }
 
+func (l *LinkedList) GetItemsFromStart() ([]int, bool) {
+	items := []int{}
+
+	if l.head == nil {
+		return items, false
+	}
+
+	cur := l.head
+
+	for cur != nil {
+		items = append(items, cur.data)
+		cur = cur.next
+	}
+	return items, true
+}
+
 func printLinkedList(l LinkedList) {
 	items := []int{}
 
