@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	data int
@@ -89,14 +91,6 @@ func (l *LinkedList) RemoveByValue(v int) bool {
 	return false
 }
 
-// func (l *LinkedList) RemoveByIndex(i int) bool {
-
-// 	if l.head == nil {
-// 		return false
-// 	}
-
-// }
-
 func (l *LinkedList) GetByValue(v int) bool {
 
 	if l.head == nil {
@@ -181,20 +175,39 @@ func (l *LinkedList) GetItemsFromEnd() ([]int, bool) {
 
 }
 
-// func (l *LinkedList) RemoveByIndex(i int) bool {
+// func (l *LinkedList) NodeBetweenValues(x, y int) (int, bool) {
 
-// 	if l.head == nil {
-// 		return false
+// 	if l.head == nil || l.head == l.tail {
+// 		return 0, false
 // 	}
 
-// 	index := 0
 // 	cur := l.head
 
-// 	// for
+// 	x := cur
+// 	y := cur.next.next
+
 // }
 
-// NodeBetweenValues()
-// AddAfter()
+func (l *LinkedList) AddAfter(af, v int) bool {
+	if l.head == nil {
+		return false
+	}
+
+	n := &Node{data: v}
+
+	for cur := l.head; cur != nil; cur = cur.next {
+		if cur.data == af {
+			n.prev = cur
+			n.next = cur.next
+
+			cur.next.prev = n
+			cur.next = n
+			return true
+		}
+	}
+
+	return false
+}
 
 func printLinkedList(l LinkedList) {
 	items := []int{}
