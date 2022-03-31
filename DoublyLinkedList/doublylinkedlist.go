@@ -89,6 +89,14 @@ func (l *LinkedList) RemoveByValue(v int) bool {
 	return false
 }
 
+// func (l *LinkedList) RemoveByIndex(i int) bool {
+
+// 	if l.head == nil {
+// 		return false
+// 	}
+
+// }
+
 func (l *LinkedList) GetByValue(v int) bool {
 
 	if l.head == nil {
@@ -172,6 +180,21 @@ func (l *LinkedList) GetItemsFromEnd() ([]int, bool) {
 	return items, true
 
 }
+
+// func (l *LinkedList) RemoveByIndex(i int) bool {
+
+// 	if l.head == nil {
+// 		return false
+// 	}
+
+// 	index := 0
+// 	cur := l.head
+
+// 	// for
+// }
+
+// NodeBetweenValues()
+// AddAfter()
 
 func printLinkedList(l LinkedList) {
 	items := []int{}
