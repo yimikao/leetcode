@@ -1,5 +1,12 @@
 from typing import List
 
+
+"""
+This gives us 
+Time:O(n)
+
+"""
+
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         hashset = set()
